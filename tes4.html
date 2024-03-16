@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Display HTML Code with Copy Button</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    code {
+        color: #c7254e;
+    }
+    .copy-btn {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    /* Responsive Styles */
+    @media only screen and (max-width: 768px) {
+        pre {
+            font-size: 14px;
+            padding: 8px;
+        }
+        .copy-btn {
+            padding: 6px 12px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h2>HTML Code with Syntax Highlighting and Copy Button</h2>
+
+<pre>
+<code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Your Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;<span style="color: #009688;">Hello, World!</span>&lt;/h1&gt;
+    &lt;p&gt;<span style="color: #007bff;">This is a paragraph.</span>&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<button class="copy-btn" id="copyBtn">Copy HTML Code</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/components/prism-markup.min.js"></script>
+
+<script>
+    var copyBtn = document.getElementById('copyBtn');
+
+    copyBtn.addEventListener('click', function() {
+        var codeToCopy = document.querySelector('code');
+        var range = document.createRange();
+        range.selectNode(codeToCopy);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+
+        copyBtn.textContent = 'Copied!'; // Change the button text to indicate successful copy
+
+        setTimeout(function() {
+            copyBtn.textContent = 'Copy HTML Code'; // Change back to original text after 2 seconds
+        }, 2000);
+    });
+</script>
+
+</body>
+</html>
